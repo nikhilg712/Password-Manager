@@ -1,6 +1,6 @@
 export default function Navbar() {
   return (
-    <nav className="bg-amber-300 flex justify-between h-14 px-5 items-center">
+    <nav className="bg-[#e98989] flex justify-between h-14 px-5 items-center">
       <div className="logo font-bold">PassOP</div>
       <ol>
         <li className="text-emerald-950 flex gap-4">
