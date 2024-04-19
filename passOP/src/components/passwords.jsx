@@ -1,9 +1,43 @@
 import { useEffect } from "react"; // Import useEffect if not already imported
 import copy from "../assets/icons/copy-icon.svg";
+import edit from "../assets/icons/edit.png";
+import React from "react";
+
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Passwords({ passwordArray }) {
+  const copyText = (text) => {
+    toast("Copied to Clipboard", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+    navigator.clipboard.writeText(text);
+  };
+
   return (
     <>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition="Bounce"
+      />
+      {/* Same as */}
+      <ToastContainer />
       {passwordArray.length === 0 ? (
         <div className="mt-7 text-xl font-semibold text-white text-center">
           No Passwords
@@ -19,6 +53,7 @@ export default function Passwords({ passwordArray }) {
                 <th>Website</th>
                 <th>Username</th>
                 <th>Password</th>
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -28,6 +63,9 @@ export default function Passwords({ passwordArray }) {
                     <div className="flex justify-center gap-2 items-center">
                       {password.site}
                       <img
+                        onClick={() => {
+                          copyText(password.site);
+                        }}
                         style={{
                           width: "15px",
                           height: "15px",
@@ -42,6 +80,9 @@ export default function Passwords({ passwordArray }) {
                     <div className="flex justify-center gap-2 items-center">
                       {password.username}
                       <img
+                        onClick={() => {
+                          copyText(password.username);
+                        }}
                         style={{
                           width: "15px",
                           height: "15px",
@@ -55,6 +96,10 @@ export default function Passwords({ passwordArray }) {
                   <td className="text-center w-100">
                     <div className="flex justify-center gap-2 items-center">
                       <span>{password.password}</span>
+                    </div>
+                  </td>
+                  <td className="text-center w-100">
+                    <div className="flex justify-center gap-3 items-center">
                       <lord-icon
                         src="https://cdn.lordicon.com/skkahier.json"
                         trigger="hover"
@@ -65,6 +110,7 @@ export default function Passwords({ passwordArray }) {
                           cursor: "pointer",
                         }}
                       ></lord-icon>
+                      <img  src={edit} alt="edit" className="w-5 h-5 cursor-pointer" />
                     </div>
                   </td>
                 </tr>
