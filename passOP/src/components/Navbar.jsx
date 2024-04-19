@@ -1,14 +1,12 @@
+import github from "../assets/icons/github.svg";
 export default function Navbar() {
   return (
-    <nav className="bg-[#e98989] flex justify-between h-14 px-5 items-center">
+    <nav className="bg-[#a9cb77] flex justify-between h-14 px-5 items-center">
       <div className="logo font-bold">PassOP</div>
-      <ol>
-        <li className="text-emerald-950 flex gap-4">
-            <a href="" className="hover:font-bold">Home</a>
-            <a href="" className="hover:font-bold">About</a>
-            <a href="" className="hover:font-bold">Contact</a>
-        </li>
-      </ol>
+      <div className="h-12 w-12">
+        <a href="https://github.com/nikhilg712" target="_blank"><img src={github} alt="github" className="h-12 w-12" /></a>
+        
+      </div>
     </nav>
   );
 }

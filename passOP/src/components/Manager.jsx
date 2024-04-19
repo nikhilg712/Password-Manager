@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import eye from "../assets/icons/eye.png";
+import Passwords from "./passwords";
 export default function Manager() {
   const [eyemask, setEyeMask] = useState("src/assets/icons/eye.png");
   const [type, setType] = useState("password");
@@ -35,7 +36,7 @@ export default function Manager() {
 
   return (
     <>
-      <div class="absolute top-0 z-[-2] h-screen w-screen bg-neutral-950 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"></div>
+      <div className="absolute top-0 z-[-2] h-screen w-screen bg-neutral-950 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"></div>
 
       <div className="container mt-10 mx-auto max-w-xl">
         <h1 className="text-white text-center text-3xl">PassOP</h1>
@@ -91,35 +92,7 @@ export default function Manager() {
             Add Password
           </button>
         </div>
-        <div className="mt-8 passwords">
-          <h2 className="text-2xl font-semibold text-red-200 text-center">Your Passwords</h2>
-          <table className="mt-5 w-full  text-white table-auto">
-            <thead className="bg-slate-600">
-              <tr>
-                <th>Website</th>
-                <th>Username</th>
-                <th>Password</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td className="text-center w-100">wwww.linkedin.com</td>
-                <td className="text-center w-100">Malcolm Lockyer</td>
-                <td className="text-center w-100">paass123</td>
-              </tr>
-              <tr>
-                <td className="text-center w-60">Witchy Woman</td>
-                <td className="text-center w-60">The Eagles</td>
-                <td className="text-center w-60">1972</td>
-              </tr>
-              <tr>
-                <td className="text-center w-60">Shining Star</td>
-                <td className="text-center w-60">Earth, Wind, and Fire</td>
-                <td className="text-center w-60">1975</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+        <Passwords passwordArray={passwordArray}/>
       </div>
     </>
   );
