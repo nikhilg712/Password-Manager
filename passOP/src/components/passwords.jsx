@@ -6,11 +6,25 @@ import React from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-export default function Passwords({ passwordArray }) {
+export default function Passwords({ setForm, passwordArray, setpasswordArray, form }) {
+  const deletePassword = (id) => {
+    console.log("deleting password");
+    const updatedPasswordArray = passwordArray.filter((item) => item.id !== id);
+    setpasswordArray(updatedPasswordArray);
+    localStorage.setItem("passwords", JSON.stringify(updatedPasswordArray));
+  };
+  const editPassword = (id) => {
+    const selectedPassword = passwordArray.find((item) => item.id === id);
+    if (selectedPassword) {
+      setForm(selectedPassword);
+      setpasswordArray(passwordArray.filter((item) => item.id !== id))
+    }
+  };
+
   const copyText = (text) => {
     toast("Copied to Clipboard", {
       position: "top-right",
-      autoClose: 5000,
+      autoClose: 2000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
@@ -25,7 +39,7 @@ export default function Passwords({ passwordArray }) {
     <>
       <ToastContainer
         position="top-right"
-        autoClose={5000}
+        autoClose={2000}
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick
@@ -34,7 +48,6 @@ export default function Passwords({ passwordArray }) {
         draggable
         pauseOnHover
         theme="light"
-        transition="Bounce"
       />
       {/* Same as */}
       <ToastContainer />
@@ -109,8 +122,18 @@ export default function Passwords({ passwordArray }) {
                           height: "20px",
                           cursor: "pointer",
                         }}
+                        onClick={() => {
+                          deletePassword(password.id);
+                        }}
                       ></lord-icon>
-                      <img  src={edit} alt="edit" className="w-5 h-5 cursor-pointer" />
+                      <img
+                        onClick={() => {
+                          editPassword(password.id);
+                        }}
+                        src={edit}
+                        alt="edit"
+                        className="w-5 h-5 cursor-pointer"
+                      />
                     </div>
                   </td>
                 </tr>
